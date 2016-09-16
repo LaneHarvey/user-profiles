@@ -20,3 +20,17 @@ var users = [
     friends: ['Preston McNeil', 'Ryan Rasmussen', 'Terri Ruff']
   }
 ];
+
+module.exports = {
+  login:  function(req, res ){
+  for (var i = 0; i < users.length; i++) {
+    if ((req.body.name === users.name) && (req.body.password === users.password)){
+      users[i] = req.session.currentUser;
+      res.send({userFound: true});
+      return;
+    }
+
+  }
+  res.send({userFound: false});
+}
+};
